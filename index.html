@@ -1,0 +1,1182 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FloatChat - SIH ID25040</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-dark: #0a0a23;
+            --bg-darker: #00001a;
+            --electric-purple: #9400d3;
+            --hot-pink: #ff007f;
+            --neon-cyan: #00ffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Share Tech Mono', monospace;
+            background: var(--bg-darker);
+            color: white;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Neon Glow Effect */
+        .neon-glow {
+            text-shadow: 
+                0 0 5px var(--neon-cyan),
+                0 0 10px var(--neon-cyan),
+                0 0 20px var(--neon-cyan),
+                0 0 30px var(--neon-cyan);
+        }
+
+        /* Glitch Effect */
+        .glitch {
+            position: relative;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 900;
+            font-size: 4rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .glitch::before, .glitch::after {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .glitch::before {
+            left: 2px;
+            text-shadow: -2px 0 var(--electric-purple);
+            animation: glitch-anim 2s infinite linear alternate-reverse;
+        }
+
+        .glitch::after {
+            left: -2px;
+            text-shadow: 2px 0 var(--hot-pink);
+            animation: glitch-anim2 3s infinite linear alternate-reverse;
+        }
+
+        @keyframes glitch-anim {
+            0% { clip-path: inset(10% 0 90% 0); }
+            10% { clip-path: inset(20% 0 80% 0); }
+            20% { clip-path: inset(30% 0 70% 0); }
+            30% { clip-path: inset(40% 0 60% 0); }
+            40% { clip-path: inset(50% 0 50% 0); }
+            50% { clip-path: inset(60% 0 40% 0); }
+            60% { clip-path: inset(70% 0 30% 0); }
+            70% { clip-path: inset(80% 0 20% 0); }
+            80% { clip-path: inset(90% 0 10% 0); }
+            90% { clip-path: inset(100% 0 0% 0); }
+            100% { clip-path: inset(0% 0 100% 0); }
+        }
+
+        @keyframes glitch-anim2 {
+            0% { clip-path: inset(0 0 100% 0); }
+            10% { clip-path: inset(0 0 90% 0); }
+            20% { clip-path: inset(0 0 80% 0); }
+            30% { clip-path: inset(0 0 70% 0); }
+            40% { clip-path: inset(0 0 60% 0); }
+            50% { clip-path: inset(0 0 50% 0); }
+            60% { clip-path: inset(0 0 40% 0); }
+            70% { clip-path: inset(0 0 30% 0); }
+            80% { clip-path: inset(0 0 20% 0); }
+            90% { clip-path: inset(0 0 10% 0); }
+            100% { clip-path: inset(0 0 0% 0); }
+        }
+
+        /* Background Grid */
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(rgba(0, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        /* Scrollbar styling */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--neon-cyan);
+            border-radius: 4px;
+        }
+
+        /* Section styling */
+        section {
+            padding: 80px 5%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+        }
+
+        section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 5%;
+            width: 90%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon-cyan), transparent);
+            box-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        section:first-of-type::before {
+            display: none;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+        }
+
+        h1 {
+            font-size: 3rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--neon-cyan);
+            box-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            max-width: 800px;
+        }
+
+        /* Button styling */
+        .neon-button {
+            display: inline-block;
+            padding: 15px 30px;
+            background: transparent;
+            color: var(--neon-cyan);
+            border: 2px solid var(--neon-cyan);
+            border-radius: 5px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            margin-top: 20px;
+        }
+
+        .neon-button::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--neon-cyan);
+            transition: all 0.3s ease;
+            z-index: -1;
+        }
+
+        .neon-button:hover {
+            color: var(--bg-darker);
+            box-shadow: 0 0 20px var(--neon-cyan);
+            transform: translateY(-3px);
+        }
+
+        .neon-button:hover::before {
+            left: 0;
+        }
+
+        /* Hero Section */
+        #hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            padding: 0 20px;
+        }
+
+        .hero-content h1 {
+            margin-top: -50px;
+        }
+
+        .hero-image {
+            width: 100%;
+            max-width: 600px;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            border: 2px solid var(--neon-cyan);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            margin-top: 30px;
+        }
+
+        .subheading {
+            font-size: 1.8rem;
+            margin: 20px 0;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+            color: var(--neon-cyan);
+        }
+
+        /* Solution Section */
+        .solution-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .video-container {
+            flex: 1;
+            min-width: 300px;
+            position: relative;
+            border: 2px solid var(--neon-cyan);
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+            overflow: hidden;
+            aspect-ratio: 16/9;
+        }
+
+        .video-player {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            background: linear-gradient(45deg, var(--bg-dark), var(--electric-purple));
+        }
+
+        .video-player video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .video-player:hover {
+            transform: scale(1.02);
+            box-shadow: 0 0 30px var(--neon-cyan);
+        }
+
+        .video-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .video-player:hover .video-controls {
+            opacity: 1;
+        }
+
+        .play-btn {
+            width: 40px;
+            height: 40px;
+            background: var(--neon-cyan);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+
+        .play-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px var(--neon-cyan);
+        }
+
+        .play-btn::before {
+            content: "";
+            width: 0;
+            height: 0;
+            border-left: 12px solid var(--bg-darker);
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+            margin-left: 3px;
+        }
+
+        .play-btn.pause::before {
+            border: none;
+            width: 3px;
+            height: 16px;
+            background: var(--bg-darker);
+            box-shadow: 6px 0 0 var(--bg-darker);
+            margin-left: 0;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--neon-cyan);
+            border-radius: 2px;
+            width: 0%;
+            transition: width 0.1s ease;
+        }
+
+        .time-display {
+            color: white;
+            font-size: 0.9rem;
+            font-family: 'Share Tech Mono', monospace;
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .volume-btn {
+            background: none;
+            border: none;
+            color: var(--neon-cyan);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .volume-slider {
+            width: 60px;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 2px;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .volume-fill {
+            height: 100%;
+            background: var(--neon-cyan);
+            border-radius: 2px;
+            width: 100%;
+        }
+
+        .fullscreen-btn {
+            background: none;
+            border: none;
+            color: var(--neon-cyan);
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .video-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .center-play-icon {
+            width: 80px;
+            height: 80px;
+            background: rgba(0, 255, 255, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px var(--neon-cyan);
+        }
+
+        .center-play-icon:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px var(--neon-cyan);
+        }
+
+        .center-play-icon::before {
+            content: "";
+            width: 0;
+            height: 0;
+            border-left: 25px solid var(--bg-darker);
+            border-top: 15px solid transparent;
+            border-bottom: 15px solid transparent;
+            margin-left: 5px;
+        }
+
+        .solution-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .features-list {
+            margin-top: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-left: 20px;
+            border-left: 2px solid var(--neon-cyan);
+        }
+
+        .feature-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--neon-cyan);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            box-shadow: 0 0 15px var(--neon-cyan);
+        }
+
+        /* Data & Insights Section */
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .gallery-item {
+            border: 2px solid var(--neon-cyan);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 0 30px var(--neon-cyan);
+        }
+
+        .gallery-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .gallery-caption {
+            padding: 15px;
+            background: rgba(10, 10, 35, 0.8);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+
+        /* Tech Stack Section */
+        .tech-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .tech-item {
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            filter: grayscale(100%);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 10px;
+        }
+
+        .tech-item:hover {
+            filter: grayscale(0%);
+            transform: scale(1.1);
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 20px var(--neon-cyan);
+        }
+
+        .tech-item img {
+            max-width: 60px;
+            max-height: 60px;
+            object-fit: contain;
+        }
+
+        /* Team Section */
+        .team-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .team-card {
+            background: rgba(10, 10, 35, 0.5);
+            border: 2px solid transparent;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .team-card:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 30px var(--neon-cyan);
+            transform: translateY(-10px) rotateX(5deg);
+        }
+
+        .team-photo {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .team-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .team-name {
+            font-size: 1.5rem;
+            margin-bottom: 5px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .team-role {
+            color: var(--neon-cyan);
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+        }
+
+        .team-card:hover .social-links {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background: var(--bg-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--neon-cyan);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icon:hover {
+            background: var(--neon-cyan);
+            color: var(--bg-darker);
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 5%;
+            text-align: center;
+            border-top: 2px solid var(--neon-cyan);
+            box-shadow: 0 0 20px var(--neon-cyan);
+            margin-top: 20px;
+        }
+
+        footer p {
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-link {
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            padding: 10px 20px;
+            border: 1px solid transparent;
+            border-radius: 5px;
+        }
+
+        .footer-link:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 15px var(--neon-cyan);
+        }
+
+        /* Scroll Animation */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.appear {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .glitch {
+                font-size: 3rem;
+            }
+            
+            .subheading {
+                font-size: 1.5rem;
+            }
+            
+            .solution-container {
+                flex-direction: column;
+            }
+            
+            .video-container {
+                width: 100%;
+            }
+            
+            .gallery-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .tech-container {
+                gap: 20px;
+            }
+            
+            .tech-item {
+                width: 60px;
+                height: 60px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .glitch {
+                font-size: 2.5rem;
+            }
+            
+            .subheading {
+                font-size: 1.2rem;
+            }
+            
+            .tagline {
+                font-size: 1rem;
+            }
+            
+            .neon-button {
+                padding: 12px 24px;
+                font-size: 1rem;
+            }
+        }
+            
+        
+        
+        
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="hero-content">
+            <h1 class="glitch" data-text="MarineCode">MarineCode</h1>
+            <p class="subheading neon-glow">AI-Powered Conversational Interface for ARGO Ocean Data</p>
+            <p class="tagline">Problem Statement ID: ID25040 | Smart India Hackathon</p>
+            <img src="image15.jpg" alt="FloatChat Demo" class="hero-image">
+            <h2 class="neon-glow" style="margin-top: 0; margin-bottom: 0; text-align: center; font-size: 3rem; letter-spacing: 3px; text-transform: uppercase;">Our Team</h2>
+        </div>
+    </section>
+
+    <!-- Our Solution Section -->
+    <section id="solution">
+        <h2 class="neon-glow">Our Solution: FloatChat</h2>
+        <div class="solution-container fade-in">
+            <div class="video-container">
+                <div class="video-player" id="video-player">
+                    <video id="main-video" preload="metadata" poster="image14.jpg">
+                        <source src="video.mp4" type="video/mp4">
+                        <p>Your browser doesn't support HTML5 video. <a href="video.mp4">Download the video</a> instead.</p>
+                    </video>
+                    <div class="video-overlay" id="video-overlay">
+                        <div class="center-play-icon"></div>
+                    </div>
+                    <div class="video-controls" id="video-controls">
+                        <button class="play-btn" id="play-btn"></button>
+                        <div class="progress-bar" id="progress-bar">
+                            <div class="progress-fill" id="progress-fill"></div>
+                        </div>
+                        <div class="time-display" id="time-display">0:00 / 0:00</div>
+                        <div class="volume-control">
+                            <button class="volume-btn" id="volume-btn">🔊</button>
+                            <div class="volume-slider" id="volume-slider">
+                                <div class="volume-fill" id="volume-fill"></div>
+                            </div>
+                        </div>
+                        <button class="fullscreen-btn" id="fullscreen-btn">⛶</button>
+                    </div>
+                </div>
+            </div>
+            <div class="solution-content">
+                <h3>The Future of Ocean Data Discovery</h3>
+                <p>FloatChat revolutionizes how scientists and researchers interact with ARGO ocean data through natural language conversations. Our AI-powered interface eliminates the need for complex queries and technical expertise, making oceanographic data accessible to everyone.</p>
+                <p>By leveraging advanced NLP and machine learning algorithms, FloatChat understands context, intent, and domain-specific terminology to provide accurate, relevant responses to user queries about ocean temperature, salinity, currents, and more.</p>
+                <div class="features-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">🧠</div>
+                        <div>
+                            <h4>Intelligent AI Assistant</h4>
+                            <p>Conversational interface that understands complex oceanographic queries</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">📊</div>
+                        <div>
+                            <h4>Dynamic Visualization</h4>
+                            <p>Real-time generation of charts, graphs, and 3D visualizations based on user requests</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💬</div>
+                        <div>
+                            <h4>Natural Language Processing</h4>
+                            <p>Advanced NLP to interpret and respond to questions in plain English</p>
+                        </div>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🌐</div>
+                        <div>
+                            <h4>Global Data Integration</h4>
+                            <p>Access to real-time and historical data from thousands of ARGO floats worldwide</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Data & Insights Section -->
+    <section id="data">
+        <h2 class="neon-glow">Visualizing ARGO Data</h2>
+        <div class="gallery-container">
+            <div class="gallery-item fade-in">
+                <img src="image7.jpg" alt="Temperature Map" class="gallery-image">
+                <div class="gallery-caption">Global Ocean Temperature Distribution</div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="image6.jpg" alt="Salinity Chart" class="gallery-image">
+                <div class="gallery-caption">Salinity Levels Across Ocean Depths</div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="image2.jpg" alt="Current Visualization" class="gallery-image">
+                <div class="gallery-caption">Ocean Current Patterns and Flow</div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="image4.jpg" alt="Data Dashboard" class="gallery-image">
+                <div class="gallery-caption">Interactive Data Exploration Dashboard</div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="image3.jpg" alt="Time Series" class="gallery-image">
+                <div class="gallery-caption">Historical Data Trends Over Time</div>
+            </div>
+            <div class="gallery-item fade-in">
+                <img src="image5.jpg" alt="3D Visualization" class="gallery-image">
+                <div class="gallery-caption">3D Representation of Ocean Layers</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tech Stack Section -->
+    <section id="tech">
+        <h2 class="neon-glow">Technologies We Used</h2>
+        <div class="tech-container">
+            <div class="tech-item fade-in">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python">
+            </div>
+            <div class="tech-item fade-in">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React">
+            </div>
+            <div class="tech-item fade-in">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow">
+            </div>
+            <div class="tech-item fade-in">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript">
+            </div>
+            <div class="tech-item fade-in">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js">
+            </div>
+            <div class="tech-item fade-in">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB">
+            </div>
+            <div class="tech-item fade-in">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker">
+            </div>
+            <div class="tech-item fade-in">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git">
+            </div>
+        </div>
+    </section>
+
+    <!-- Meet the Team Section -->
+    <section id="team">
+        <h2 class="neon-glow">The Architects of FloatChat</h2>
+        <div class="team-container">
+            <div class="team-card fade-in">
+                <img src="image8.jpg" alt="Team Lead" class="team-photo">
+                <div class="team-info">
+                    <h3 class="team-name">Aman Sagar Shukla
+                    <p class="team-role">Team Leader & AI Specialist/Full stack</p>
+                    
+                </div>
+            </div>
+            <div class="team-card fade-in">
+                <img src="image9.jpg" alt="Developer" class="team-photo">
+                <div class="team-info">
+                    <h3 class="team-name">Vinayak Pandey</h3>
+                    <p class="team-role">Frontend Developer And Backend Developer</p>
+                    
+                </div>
+            </div>
+            <div class="team-card fade-in">
+                <img src="image10.jpg" alt="Developer" class="team-photo">
+                <div class="team-info">
+                    <h3 class="team-name">Divyanand Pandey</h3>
+                    <p class="team-role">UI - UX Designer</p>
+                    
+                </div>
+            </div>
+            <div class="team-card fade-in">
+                <img src="image11.jpg" alt="Designer" class="team-photo">
+                <div class="team-info">
+                    <h3 class="team-name">Natasha Singh</h3>
+                    <p class="team-role">Presentation and Pitch Manager</p>
+                   
+                </div>
+            </div>
+            <div class="team-card fade-in">
+                <img src="image12.jpg" alt="Analyst" class="team-photo">
+                <div class="team-info">
+                    <h3 class="team-name">Shanvi Chaudary</h3>
+                    <p class="team-role">Testing And Feedback</p>
+                  </div>  
+                
+            </div>
+            <div class="team-card fade-in">
+                <img src="image13.jpg" alt="Researcher" class="team-photo">
+                <div class="team-info">
+                    <h3 class="team-name">Ashish Kumar</h3>
+                    <p class="team-role">Oceanography Researcher</p>
+                   
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p class="hex">FloatChat - AI-Powered Conversational Interface for ARGO Ocean Data Discovery and Visualization</p>
+        <p class="hex">Problem Statement ID: ID25040 | Smart India Hackathon</p>
+        <div class="footer-links">
+            <a href="https://www.sih.gov.in" class="footer-link" target="_blank">Smart India Hackathon</a>
+            
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+
+            // Smooth scrolling for navigation
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+
+            // Scroll animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('appear');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+
+            // Video player functionality
+            const video = document.getElementById('main-video');
+            const playBtn = document.getElementById('play-btn');
+            const progressBar = document.getElementById('progress-bar');
+            const progressFill = document.getElementById('progress-fill');
+            const timeDisplay = document.getElementById('time-display');
+            const volumeBtn = document.getElementById('volume-btn');
+            const volumeSlider = document.getElementById('volume-slider');
+            const volumeFill = document.getElementById('volume-fill');
+            const fullscreenBtn = document.getElementById('fullscreen-btn');
+            const videoPlayer = document.getElementById('video-player');
+            const videoOverlay = document.getElementById('video-overlay');
+
+            // Play/Pause functionality
+            playBtn.addEventListener('click', () => {
+                if (video.paused) {
+                    video.play();
+                    playBtn.classList.add('pause');
+                } else {
+                    video.pause();
+                    playBtn.classList.remove('pause');
+                }
+            });
+
+            // Video overlay click to play
+            videoOverlay.addEventListener('click', () => {
+                video.play();
+                playBtn.classList.add('pause');
+                videoOverlay.classList.add('hidden');
+            });
+
+            // Video click to play/pause
+            video.addEventListener('click', () => {
+                playBtn.click();
+            });
+
+            // Hide overlay when video starts playing
+            video.addEventListener('play', () => {
+                videoOverlay.classList.add('hidden');
+            });
+
+            // Show overlay when video is paused or ended
+            video.addEventListener('pause', () => {
+                if (!video.ended) {
+                    videoOverlay.classList.remove('hidden');
+                }
+            });
+
+            video.addEventListener('ended', () => {
+                videoOverlay.classList.remove('hidden');
+                playBtn.classList.remove('pause');
+            });
+
+            // Progress bar update
+            video.addEventListener('timeupdate', () => {
+                const progress = (video.currentTime / video.duration) * 100;
+                progressFill.style.width = progress + '%';
+                
+                const currentMinutes = Math.floor(video.currentTime / 60);
+                const currentSeconds = Math.floor(video.currentTime % 60);
+                const durationMinutes = Math.floor(video.duration / 60);
+                const durationSeconds = Math.floor(video.duration % 60);
+                
+                timeDisplay.textContent = `${currentMinutes}:${currentSeconds.toString().padStart(2, '0')} / ${durationMinutes}:${durationSeconds.toString().padStart(2, '0')}`;
+            });
+
+            // Progress bar click
+            progressBar.addEventListener('click', (e) => {
+                const rect = progressBar.getBoundingClientRect();
+                const clickX = e.clientX - rect.left;
+                const width = rect.width;
+                const newTime = (clickX / width) * video.duration;
+                video.currentTime = newTime;
+            });
+
+            // Volume control
+            volumeBtn.addEventListener('click', () => {
+                if (video.muted) {
+                    video.muted = false;
+                    volumeBtn.textContent = '🔊';
+                    volumeFill.style.width = (video.volume * 100) + '%';
+                } else {
+                    video.muted = true;
+                    volumeBtn.textContent = '🔇';
+                    volumeFill.style.width = '0%';
+                }
+            });
+
+            // Volume slider
+            volumeSlider.addEventListener('click', (e) => {
+                const rect = volumeSlider.getBoundingClientRect();
+                const clickX = e.clientX - rect.left;
+                const width = rect.width;
+                const newVolume = clickX / width;
+                video.volume = newVolume;
+                volumeFill.style.width = (newVolume * 100) + '%';
+                video.muted = false;
+                volumeBtn.textContent = newVolume > 0 ? '🔊' : '🔇';
+            });
+
+            // Fullscreen functionality
+            fullscreenBtn.addEventListener('click', () => {
+                if (document.fullscreenElement) {
+                    document.exitFullscreen();
+                } else {
+                    videoPlayer.requestFullscreen();
+                }
+            });
+
+            // Keyboard controls
+            document.addEventListener('keydown', (e) => {
+                if (e.target.tagName.toLowerCase() !== 'input') {
+                    switch(e.code) {
+                        case 'Space':
+                            e.preventDefault();
+                            playBtn.click();
+                            break;
+                        case 'ArrowLeft':
+                            video.currentTime -= 10;
+                            break;
+                        case 'ArrowRight':
+                            video.currentTime += 10;
+                            break;
+                        case 'ArrowUp':
+                            e.preventDefault();
+                            video.volume = Math.min(1, video.volume + 0.1);
+                            volumeFill.style.width = (video.volume * 100) + '%';
+                            break;
+                        case 'ArrowDown':
+                            e.preventDefault();
+                            video.volume = Math.max(0, video.volume - 0.1);
+                            volumeFill.style.width = (video.volume * 100) + '%';
+                            break;
+                        case 'KeyM':
+                            volumeBtn.click();
+                            break;
+                        case 'KeyF':
+                            fullscreenBtn.click();
+                            break;
+                    }
+                }
+            });
+
+            // Video error handling
+            video.addEventListener('error', () => {
+                console.log('Video failed to load. Using placeholder.');
+                videoPlayer.innerHTML = `
+                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(45deg, var(--bg-dark), var(--electric-purple)); color: var(--neon-cyan); text-align: center; padding: 20px;">
+                        <div>
+                            <h3>Demo Video</h3>
+                            <p>Video file not found. Please add 'video.mp4' to your project directory.</p>
+                            <p style="margin-top: 20px; font-size: 0.9rem;">This would show the FloatChat demonstration video.</p>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Initialize volume display
+            volumeFill.style.width = (video.volume * 100) + '%';
+
+            // Add glitch effect periodically
+            setInterval(() => {
+                const glitchElement = document.querySelector('.glitch');
+                glitchElement.style.opacity = 0.8;
+                setTimeout(() => {
+                    glitchElement.style.opacity = 1;
+                }, 100);
+            }, 5000);
+        });
+    </script>
+</body>
+</html>
+```
