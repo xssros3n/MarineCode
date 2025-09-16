@@ -303,10 +303,9 @@
             background: linear-gradient(45deg, var(--bg-dark), var(--electric-purple));
         }
 
-        .video-player video {
+        .video-player iframe {
             width: 100%;
             height: 100%;
-            object-fit: cover;
             border-radius: 8px;
         }
 
@@ -315,167 +314,7 @@
             box-shadow: 0 0 30px var(--neon-cyan);
         }
 
-        .video-controls {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
 
-        .video-player:hover .video-controls {
-            opacity: 1;
-        }
-
-        .play-btn {
-            width: 40px;
-            height: 40px;
-            background: var(--neon-cyan);
-            border: none;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-        }
-
-        .play-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 15px var(--neon-cyan);
-        }
-
-        .play-btn::before {
-            content: "";
-            width: 0;
-            height: 0;
-            border-left: 12px solid var(--bg-darker);
-            border-top: 8px solid transparent;
-            border-bottom: 8px solid transparent;
-            margin-left: 3px;
-        }
-
-        .play-btn.pause::before {
-            border: none;
-            width: 3px;
-            height: 16px;
-            background: var(--bg-darker);
-            box-shadow: 6px 0 0 var(--bg-darker);
-            margin-left: 0;
-        }
-
-        .progress-bar {
-            flex: 1;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 2px;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: var(--neon-cyan);
-            border-radius: 2px;
-            width: 0%;
-            transition: width 0.1s ease;
-        }
-
-        .time-display {
-            color: white;
-            font-size: 0.9rem;
-            font-family: 'Share Tech Mono', monospace;
-        }
-
-        .volume-control {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .volume-btn {
-            background: none;
-            border: none;
-            color: var(--neon-cyan);
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-
-        .volume-slider {
-            width: 60px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 2px;
-            cursor: pointer;
-            position: relative;
-        }
-
-        .volume-fill {
-            height: 100%;
-            background: var(--neon-cyan);
-            border-radius: 2px;
-            width: 100%;
-        }
-
-        .fullscreen-btn {
-            background: none;
-            border: none;
-            color: var(--neon-cyan);
-            cursor: pointer;
-            font-size: 1.2rem;
-        }
-
-        .video-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0, 0, 0, 0.3);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .video-overlay.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .center-play-icon {
-            width: 80px;
-            height: 80px;
-            background: rgba(0, 255, 255, 0.9);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px var(--neon-cyan);
-        }
-
-        .center-play-icon:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 30px var(--neon-cyan);
-        }
-
-        .center-play-icon::before {
-            content: "";
-            width: 0;
-            height: 0;
-            border-left: 25px solid var(--bg-darker);
-            border-top: 15px solid transparent;
-            border-bottom: 15px solid transparent;
-            margin-left: 5px;
-        }
 
         .solution-content {
             flex: 1;
@@ -790,27 +629,7 @@
         <div class="solution-container fade-in">
             <div class="video-container">
                 <div class="video-player" id="video-player">
-                    <video id="main-video" preload="metadata" poster="image14.jpg">
-                        <source src="video.mp4" type="video/mp4">
-                        <p>Your browser doesn't support HTML5 video. <a href="video.mp4">Download the video</a> instead.</p>
-                    </video>
-                    <div class="video-overlay" id="video-overlay">
-                        <div class="center-play-icon"></div>
-                    </div>
-                    <div class="video-controls" id="video-controls">
-                        <button class="play-btn" id="play-btn"></button>
-                        <div class="progress-bar" id="progress-bar">
-                            <div class="progress-fill" id="progress-fill"></div>
-                        </div>
-                        <div class="time-display" id="time-display">0:00 / 0:00</div>
-                        <div class="volume-control">
-                            <button class="volume-btn" id="volume-btn">🔊</button>
-                            <div class="volume-slider" id="volume-slider">
-                                <div class="volume-fill" id="volume-fill"></div>
-                            </div>
-                        </div>
-                        <button class="fullscreen-btn" id="fullscreen-btn">⛶</button>
-                    </div>
+                    <iframe width="100%" height="100%" src="https://www.youtube.com/embed/CYhqzF-T61s" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                 </div>
             </div>
             <div class="solution-content">
@@ -1007,165 +826,7 @@
                 observer.observe(el);
             });
 
-            // Video player functionality
-            const video = document.getElementById('main-video');
-            const playBtn = document.getElementById('play-btn');
-            const progressBar = document.getElementById('progress-bar');
-            const progressFill = document.getElementById('progress-fill');
-            const timeDisplay = document.getElementById('time-display');
-            const volumeBtn = document.getElementById('volume-btn');
-            const volumeSlider = document.getElementById('volume-slider');
-            const volumeFill = document.getElementById('volume-fill');
-            const fullscreenBtn = document.getElementById('fullscreen-btn');
-            const videoPlayer = document.getElementById('video-player');
-            const videoOverlay = document.getElementById('video-overlay');
 
-            // Play/Pause functionality
-            playBtn.addEventListener('click', () => {
-                if (video.paused) {
-                    video.play();
-                    playBtn.classList.add('pause');
-                } else {
-                    video.pause();
-                    playBtn.classList.remove('pause');
-                }
-            });
-
-            // Video overlay click to play
-            videoOverlay.addEventListener('click', () => {
-                video.play();
-                playBtn.classList.add('pause');
-                videoOverlay.classList.add('hidden');
-            });
-
-            // Video click to play/pause
-            video.addEventListener('click', () => {
-                playBtn.click();
-            });
-
-            // Hide overlay when video starts playing
-            video.addEventListener('play', () => {
-                videoOverlay.classList.add('hidden');
-            });
-
-            // Show overlay when video is paused or ended
-            video.addEventListener('pause', () => {
-                if (!video.ended) {
-                    videoOverlay.classList.remove('hidden');
-                }
-            });
-
-            video.addEventListener('ended', () => {
-                videoOverlay.classList.remove('hidden');
-                playBtn.classList.remove('pause');
-            });
-
-            // Progress bar update
-            video.addEventListener('timeupdate', () => {
-                const progress = (video.currentTime / video.duration) * 100;
-                progressFill.style.width = progress + '%';
-                
-                const currentMinutes = Math.floor(video.currentTime / 60);
-                const currentSeconds = Math.floor(video.currentTime % 60);
-                const durationMinutes = Math.floor(video.duration / 60);
-                const durationSeconds = Math.floor(video.duration % 60);
-                
-                timeDisplay.textContent = `${currentMinutes}:${currentSeconds.toString().padStart(2, '0')} / ${durationMinutes}:${durationSeconds.toString().padStart(2, '0')}`;
-            });
-
-            // Progress bar click
-            progressBar.addEventListener('click', (e) => {
-                const rect = progressBar.getBoundingClientRect();
-                const clickX = e.clientX - rect.left;
-                const width = rect.width;
-                const newTime = (clickX / width) * video.duration;
-                video.currentTime = newTime;
-            });
-
-            // Volume control
-            volumeBtn.addEventListener('click', () => {
-                if (video.muted) {
-                    video.muted = false;
-                    volumeBtn.textContent = '🔊';
-                    volumeFill.style.width = (video.volume * 100) + '%';
-                } else {
-                    video.muted = true;
-                    volumeBtn.textContent = '🔇';
-                    volumeFill.style.width = '0%';
-                }
-            });
-
-            // Volume slider
-            volumeSlider.addEventListener('click', (e) => {
-                const rect = volumeSlider.getBoundingClientRect();
-                const clickX = e.clientX - rect.left;
-                const width = rect.width;
-                const newVolume = clickX / width;
-                video.volume = newVolume;
-                volumeFill.style.width = (newVolume * 100) + '%';
-                video.muted = false;
-                volumeBtn.textContent = newVolume > 0 ? '🔊' : '🔇';
-            });
-
-            // Fullscreen functionality
-            fullscreenBtn.addEventListener('click', () => {
-                if (document.fullscreenElement) {
-                    document.exitFullscreen();
-                } else {
-                    videoPlayer.requestFullscreen();
-                }
-            });
-
-            // Keyboard controls
-            document.addEventListener('keydown', (e) => {
-                if (e.target.tagName.toLowerCase() !== 'input') {
-                    switch(e.code) {
-                        case 'Space':
-                            e.preventDefault();
-                            playBtn.click();
-                            break;
-                        case 'ArrowLeft':
-                            video.currentTime -= 10;
-                            break;
-                        case 'ArrowRight':
-                            video.currentTime += 10;
-                            break;
-                        case 'ArrowUp':
-                            e.preventDefault();
-                            video.volume = Math.min(1, video.volume + 0.1);
-                            volumeFill.style.width = (video.volume * 100) + '%';
-                            break;
-                        case 'ArrowDown':
-                            e.preventDefault();
-                            video.volume = Math.max(0, video.volume - 0.1);
-                            volumeFill.style.width = (video.volume * 100) + '%';
-                            break;
-                        case 'KeyM':
-                            volumeBtn.click();
-                            break;
-                        case 'KeyF':
-                            fullscreenBtn.click();
-                            break;
-                    }
-                }
-            });
-
-            // Video error handling
-            video.addEventListener('error', () => {
-                console.log('Video failed to load. Using placeholder.');
-                videoPlayer.innerHTML = `
-                    <div style="width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; background: linear-gradient(45deg, var(--bg-dark), var(--electric-purple)); color: var(--neon-cyan); text-align: center; padding: 20px;">
-                        <div>
-                            <h3>Demo Video</h3>
-                            <p>Video file not found. Please add 'video.mp4' to your project directory.</p>
-                            <p style="margin-top: 20px; font-size: 0.9rem;">This would show the MarineCode demonstration video.</p>
-                        </div>
-                    </div>
-                `;
-            });
-
-            // Initialize volume display
-            volumeFill.style.width = (video.volume * 100) + '%';
 
             // Add glitch effect periodically
             setInterval(() => {
@@ -1179,4 +840,3 @@
     </script>
 </body>
 </html>
-```
